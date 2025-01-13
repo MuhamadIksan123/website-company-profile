@@ -9,7 +9,7 @@ class HeroSection extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'achievment',
+        'achievement',
         'subheading',
         'heading',
         'path_video',
