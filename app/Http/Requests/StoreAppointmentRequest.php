@@ -22,11 +22,11 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone_number',
+            'phone_number' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email'],
             'meeting_at' => ['required', 'date'],
-            'budget' => ['required', 'numeric', 'max:255'],
+            'budget' => ['required', 'numeric', 'max:1000000000000'],
             'brief' => ['required', 'max:500'],
             'product_id' => ['required', 'numeric', 'max:255'],
         ];

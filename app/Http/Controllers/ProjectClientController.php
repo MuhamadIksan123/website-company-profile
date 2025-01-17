@@ -69,18 +69,18 @@ class ProjectClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UpdateClientRequest $client)
+    public function update(UpdateClientRequest $request, ProjectClient $client)
     {
-        DB::transaction(function () use ($client) {
-            $validated = $client->validated();
+        DB::transaction(function () use ($request, $client) {
+            $validated = $request->validated();
 
-            if ($client->hasFile('avatar')) {
-                $avatarPath = $client->file('avatar')->store('avatars', 'public');
+            if ($request->hasFile('avatar')) {
+                $avatarPath = $request->file('avatar')->store('avatars', 'public');
                 $validated['avatar'] = $avatarPath;
             }
 
-            if ($client->hasFile('logo')) {
-                $logoPath = $client->file('logo')->store('logos', 'public');
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('logos', 'public');
                 $validated['logo'] = $logoPath;
             }
 

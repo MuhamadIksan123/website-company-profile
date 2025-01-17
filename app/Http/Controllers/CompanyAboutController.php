@@ -86,11 +86,9 @@ class CompanyAboutController extends Controller
             $about->update($validated);
 
             if (!empty($validated['keypoints'])) {
-                $about->keypoints->delete();
+                $about->keypoints()->delete(); // Menghapus keypoints yang lama
                 foreach ($validated['keypoints'] as $keypoint) {
-                    $about->keypoints()->create([
-                        'keypoint' => $keypoint
-                    ]);
+                    $about->keypoints()->create(['keypoint' => $keypoint]);
                 }
             }
         });
